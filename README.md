@@ -50,7 +50,7 @@ HEIGHT=1152
 BATCH_SIZE=2
 SEND_PHOTO=True
 SEND_PNG=False
-PREFIX='!!!'
+PREFIX='-p'
 ```
 SERVER_ADDRESS - the server address where you are using ConfyUI
 
@@ -88,6 +88,12 @@ Type in telegram bot:
 
 ```
 !!! a lot of cute construction minions
+```
+
+Or like this:
+
+```
+!!! a lot of cute construction minions -w 1216 -h 832
 ```
 Waiting...
 
