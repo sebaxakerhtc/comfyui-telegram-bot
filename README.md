@@ -20,7 +20,7 @@ Telegram bot
 
 #### 1. Clone the repository:
 ```
-git clone https://github.com/Shaman-art/wf-f1d-telegram-bot.git
+git clone https://github.com/sebaxakerhtc/comfyui-telegram-bot.git
 cd wf-f1d-telegram-bot
 ```
 #### 2. We are installing all the dependencies required for the Python project, as listed in the requirements.txt file
@@ -28,7 +28,7 @@ cd wf-f1d-telegram-bot
 <PATH_TO_YOUR_PYTHON>\python -m pip install -r requirements.txt
 ```
 #### 3. Configuring the example.env file to suit our needs and copy to .env
-##### If you want to use LoRA - edit main.py at line 179
+##### If you want to use LoRA - read and edit main.py at line 179
 ##### If running on *Nix replace `\\` with `/`
 ```
 SERVER_ADDRESS = '127.0.0.1:8188' 
