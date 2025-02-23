@@ -170,12 +170,14 @@ workflow["16"]["inputs"]["sampler_name"] = sampler
 workflow["17"]["inputs"]["scheduler"] = scheduler
 workflow["17"]["inputs"]["steps"] = steps
 workflow["17"]["inputs"]["denoise"] = denoising_strength
-#workflow["72"]["inputs"]["lora_name"] = lora_name
 workflow["27"]["inputs"]["width"] = width
 workflow["27"]["inputs"]["height"] = height
 workflow["27"]["inputs"]["batch_size"] = batch_size
 workflow["30"]["inputs"]["width"] = width
 workflow["30"]["inputs"]["height"] = height
+# Rename wf-base-lora.json to wf-base.json
+# and uncomment next line if you want to use LoRA
+# workflow["31"]["inputs"]["lora_name"] = lora_name
 
 if __name__ == '__main__':
     try:
