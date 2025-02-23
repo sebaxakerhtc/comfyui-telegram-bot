@@ -18,19 +18,19 @@ load_dotenv()
 server_address = os.getenv('SERVER_ADDRESS', '127.0.0.1:8188')
 tg_token = os.getenv('TG_TOKEN', None)
 prefix = os.getenv('PREFIX', '!!!')
-model = os.getenv('MODEL', 'flux\\flux1-dev.sft')
-weight_dtype = os.getenv('WEIGHT_DTYPE', 'fp8_e4m3fn')
-t5xxl = os.getenv('T5XXL', 'flux\\t5xxl_fp8_e4m3fn.safetensors')
+model = os.getenv('MODEL', 'flux\\flux1-dev.safetensors')
+weight_dtype = os.getenv('WEIGHT_DTYPE', 'default')
+t5xxl = os.getenv('T5XXL', 'flux\\t5xxl_fp16.safetensors')
 clip_l = os.getenv('CLIP_L', 'flux\\clip_l.safetensors')
-vae_name = os.getenv('VAE', 'flux\\flux_ae.sft')
+vae_name = os.getenv('VAE', 'flux\\ae.safetensors')
 lora_name = os.getenv('LORA ', 'flux\\flux_dev_NSFW_master.safetensors')
 sampler = os.getenv('SAMPLER', 'dpmpp_2m')
 scheduler = os.getenv('SCHEDULER', 'sgm_uniform')
 cfg_scale = int(os.getenv('CFG_SCALE', 7))
 denoising_strength = float(os.getenv('DENOISING_STRENGTH', 0.75))
 steps = int(os.getenv('STEPS', 25))
-width = int(os.getenv('WIDTH', 512))
-height = int(os.getenv('HEIGHT', 512))
+width = int(os.getenv('WIDTH', 1024))
+height = int(os.getenv('HEIGHT', 1024))
 batch_size = int(os.getenv('BATCH_SIZE', 1))
 send_jpeg = os.getenv('SEND_PHOTO', True ).lower() in ('true')
 send_png = os.getenv('SEND_PNG',  True ).lower() in ('true')
@@ -171,10 +171,11 @@ workflow["17"]["inputs"]["scheduler"] = scheduler
 workflow["17"]["inputs"]["steps"] = steps
 workflow["17"]["inputs"]["denoise"] = denoising_strength
 #workflow["72"]["inputs"]["lora_name"] = lora_name
-workflow["85"]["inputs"]["aspect_ratio"] = 'custom'
-workflow["85"]["inputs"]["width"] = width
-workflow["85"]["inputs"]["height"] = height
-workflow["85"]["inputs"]["batch_size"] = batch_size
+workflow["27"]["inputs"]["width"] = width
+workflow["27"]["inputs"]["height"] = height
+workflow["27"]["inputs"]["batch_size"] = batch_size
+workflow["30"]["inputs"]["width"] = width
+workflow["30"]["inputs"]["height"] = height
 
 if __name__ == '__main__':
     try:
