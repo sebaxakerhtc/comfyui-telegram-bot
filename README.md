@@ -13,6 +13,7 @@ Telegram bot
 5. Create a unique username (it must end with "bot", for example, "MyTestBot_bot"). 
 6. BotFather will send you an access token — a key that allows you to manage the bot via API. 
 7. Save it. You will use it in TG_TOKEN
+8. Upd. Default workflow is named `wf-base.json` - feel free to replace it with yours and edit things to your needs
 
 
 # Installation and Running
@@ -27,27 +28,28 @@ cd wf-f1d-telegram-bot
 <PATH_TO_YOUR_PYTHON>\python -m pip install -r requirements.txt
 ```
 #### 3. Configuring the example.env file to suit our needs and copy to .env
-
+##### If you want to use LoRA - edit main.py at line 179
 ```
 SERVER_ADDRESS = '127.0.0.1:8188' 
 TG_TOKEN = XXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-MODEL = 'flux\\flux1-dev.sft'
-WEIGHT_DTYPE = 'fp8_e4m3fn'
-T5XXL = 'flux\\t5xxl_fp8_e4m3fn.safetensors'
-CLIP_L = 'flux\\clip_l.safetensors'
-VAE = 'flux\\flux_ae.sft'
-LORA = 'flux\\flux_dev_NSFW_master.safetensors'
-SAMPLER = 'dpmpp_2m'
-SCHEDULER = 'sgm_uniform'
-CFG_SCALE = 1
-DENOISING_STRENGTH = 0.99
-STEPS = 30
-WIDTH = 896
-HEIGHT = 1152
-BATCH_SIZE = 2
-SEND_PHOTO = True
-SEND_PNG = False
-PREFIX = '!!!'
+MODEL='flux1-dev.safetensors'
+WEIGHT_DTYPE='default'
+T5XXL='t5xxl_fp16.safetensors'
+CLIP_L='clip_l.safetensors'
+VAE='ae.safetensors'
+LORA='Flux\\aidmaHyperrealism-FLUX-v0.3.safetensors'
+LORA_STRENGTH=0.8
+SAMPLER='euler'
+SCHEDULER='normal'
+CFG_SCALE=1.0
+DENOISING_STRENGTH=1.0
+STEPS=30
+WIDTH=896
+HEIGHT=1152
+BATCH_SIZE=2
+SEND_PHOTO=True
+SEND_PNG=False
+PREFIX='!!!'
 ```
 SERVER_ADDRESS - the server address where you are using ConfyUI
 
