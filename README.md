@@ -29,6 +29,7 @@ cd wf-f1d-telegram-bot
 ```
 #### 3. Configuring the example.env file to suit our needs and copy to .env
 ##### If you want to use LoRA - edit main.py at line 179
+##### If running on *Nix replace `\\` with `/`
 ```
 SERVER_ADDRESS = '127.0.0.1:8188' 
 TG_TOKEN = XXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
