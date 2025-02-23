@@ -191,7 +191,7 @@
   },
   "31": {
     "inputs": {
-      "lora_name": "Flux\\NSFW_master.safetensors",
+      "lora_name": "Flux\\aidmaHyperrealism-FLUX-v0.3.safetensors",
       "strength_model": 0.75,
       "strength_clip": 0.75,
       "model": [
