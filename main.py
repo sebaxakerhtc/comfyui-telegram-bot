@@ -10,6 +10,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, CallbackQueryHandler, ContextTypes, MessageHandler, filters
 import random
 from io import BytesIO
+import re
 
 client_id = str(uuid.uuid4())
 
@@ -17,7 +18,7 @@ load_dotenv()
 
 server_address = os.getenv('SERVER_ADDRESS', '127.0.0.1:8188')
 tg_token = os.getenv('TG_TOKEN', None)
-prefix = os.getenv('PREFIX', '!!!')
+prefix = os.getenv('PREFIX', '-p')
 model = os.getenv('MODEL', 'flux\\flux1-dev.safetensors')
 weight_dtype = os.getenv('WEIGHT_DTYPE', 'default')
 t5xxl = os.getenv('T5XXL', 'flux\\t5xxl_fp16.safetensors')
@@ -35,6 +36,9 @@ height = int(os.getenv('HEIGHT', 1024))
 batch_size = int(os.getenv('BATCH_SIZE', 1))
 send_jpeg = os.getenv('SEND_PHOTO', True ).lower() in ('true')
 send_png = os.getenv('SEND_PNG',  True ).lower() in ('true')
+
+def clean_prompt(text):
+    return re.sub(r"-[wh] \d+", "", text).strip()
 
 def queue_prompt(prompt):
     p = {"prompt": prompt, "client_id": client_id}
@@ -109,6 +113,22 @@ def upload_file(file, subfolder="", overwrite=False):
         print(error)
     return path
 
+def extract_width(text):
+    parts = text.split("-w ", 1)
+    if len(parts) > 1:
+        width_str = parts[1].split(" ", 1)[0]
+        if width_str.isdigit():
+            return int(width_str)
+    return None
+
+def extract_height(text):
+    parts = text.split("-h ", 1)
+    if len(parts) > 1:
+        width_str = parts[1].split(" ", 1)[0]
+        if width_str.isdigit():
+            return int(width_str)
+    return None
+
 async def send_message(update: Update, context: ContextTypes.DEFAULT_TYPE, images, delete_chat_id, delete_message_id, send_chat_id, reply_message_id, prompt, image_seed, image_generation_time, option_button_choice='New') -> None:
     if images:
         await context.bot.delete_message(chat_id=delete_chat_id, message_id=delete_message_id)
@@ -143,6 +163,19 @@ async def txt2img(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         return
     txt2img_msg = await update.message.reply_text("Generating...", reply_to_message_id=update.message.message_id)
     txt2img_prompt = update.message.text.replace(prefix,"").replace("\"","\'").strip()
+
+    extracted_width = extract_width(txt2img_prompt)
+    extracted_height = extract_height(txt2img_prompt)
+
+    txt2img_prompt = clean_prompt(txt2img_prompt)
+
+    if extracted_width:
+        workflow["27"]["inputs"]["width"] = extracted_width
+        workflow["30"]["inputs"]["width"] = extracted_width
+    if extracted_height:
+        workflow["27"]["inputs"]["height"] = extracted_height
+        workflow["30"]["inputs"]["height"] = extracted_height
+
     workflow["6"]["inputs"]["text"]  = txt2img_prompt
     seed = random.randint(1, 1000000000)
     workflow["25"]["inputs"]["noise_seed"] = seed
