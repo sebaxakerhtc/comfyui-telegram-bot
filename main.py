@@ -23,10 +23,11 @@ weight_dtype = os.getenv('WEIGHT_DTYPE', 'default')
 t5xxl = os.getenv('T5XXL', 'flux\\t5xxl_fp16.safetensors')
 clip_l = os.getenv('CLIP_L', 'flux\\clip_l.safetensors')
 vae_name = os.getenv('VAE', 'flux\\ae.safetensors')
-lora_name = os.getenv('LORA', 'flux\\flux_dev_NSFW_master.safetensors')
+lora_name = os.getenv('LORA', 'Flux\\aidmaHyperrealism-FLUX-v0.3.safetensors')
+lora_strength = float(os.getenv('LORA_STRENGTH', 0.75))
 sampler = os.getenv('SAMPLER', 'dpmpp_2m')
 scheduler = os.getenv('SCHEDULER', 'sgm_uniform')
-cfg_scale = int(os.getenv('CFG_SCALE', 7))
+cfg_scale = float(os.getenv('CFG_SCALE', 7.0))
 denoising_strength = float(os.getenv('DENOISING_STRENGTH', 0.75))
 steps = int(os.getenv('STEPS', 25))
 width = int(os.getenv('WIDTH', 1024))
@@ -176,8 +177,10 @@ workflow["27"]["inputs"]["batch_size"] = batch_size
 workflow["30"]["inputs"]["width"] = width
 workflow["30"]["inputs"]["height"] = height
 # Rename wf-base-lora.json to wf-base.json
-# and uncomment next line if you want to use LoRA
+# and uncomment next lines if you want to use LoRA
 # workflow["31"]["inputs"]["lora_name"] = lora_name
+# workflow["31"]["inputs"]["strength_model"] = lora_strength
+# workflow["31"]["inputs"]["strength_clip"] = lora_strength
 
 if __name__ == '__main__':
     try:
