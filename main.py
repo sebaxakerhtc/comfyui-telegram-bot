@@ -143,7 +143,7 @@ async def txt2img(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         return
     txt2img_msg = await update.message.reply_text("Generating...", reply_to_message_id=update.message.message_id)
     txt2img_prompt = update.message.text.replace(prefix,"").replace("\"","\'").strip()
-    workflow["6"]["inputs"]["text"]  = f'breathtaking illustration from adult comic book presenting, ultrarealistic, photorealism, high quality texture, {txt2img_prompt}. fabulous artwork. best quality, high resolution'
+    workflow["6"]["inputs"]["text"]  = txt2img_prompt
     seed = random.randint(1, 1000000000)
     workflow["25"]["inputs"]["noise_seed"] = seed
     ws = websocket.WebSocket()
