@@ -87,13 +87,13 @@ OR STAY IT AS IS (if you have same)
 Type in telegram bot:
 
 ```
-!!! a lot of cute construction minions
+-p a lot of cute construction minions
 ```
 
 Or like this:
 
 ```
-!!! a lot of cute construction minions -w 1216 -h 832
+-p a lot of cute construction minions -w 1216 -h 832
 ```
 Waiting...
 
