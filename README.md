@@ -20,7 +20,7 @@ Telegram bot
 
 #### 1. Clone the repository:
 ```
-git clone https://github.com/Shaman-art/wf-f1d-telegram-bot.git
+git clone https://github.com/sebaxakerhtc/comfyui-telegram-bot.git
 cd wf-f1d-telegram-bot
 ```
 #### 2. We are installing all the dependencies required for the Python project, as listed in the requirements.txt file
