@@ -209,7 +209,8 @@ workflow["27"]["inputs"]["height"] = height
 workflow["27"]["inputs"]["batch_size"] = batch_size
 workflow["30"]["inputs"]["width"] = width
 workflow["30"]["inputs"]["height"] = height
-# Rename wf-base-lora.json to wf-base.json
+# Rename wf-base-lora.json or
+# wf-base-lora-hr.json (LoRA + HiRes Fix) to wf-base.json
 # and uncomment next lines if you want to use LoRA
 # workflow["31"]["inputs"]["lora_name"] = lora_name
 # workflow["31"]["inputs"]["strength_model"] = lora_strength
