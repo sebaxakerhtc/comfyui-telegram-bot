@@ -28,7 +28,7 @@ cd comfyui-telegram-bot
 <PATH_TO_YOUR_PYTHON>\python -m pip install -r requirements.txt
 ```
 #### 3. Configuring the example.env file to suit our needs and copy to .env
-##### If you want to use LoRA - read and edit main.py at line 179
+##### If you want to use LoRA - read and edit main.py at line 212
 ##### If running on *Nix replace `\\` with `/`
 ```
 SERVER_ADDRESS = '127.0.0.1:8188' 
